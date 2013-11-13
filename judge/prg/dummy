@@ -1,0 +1,95 @@
+#!/usr/bin/python
+
+import random
+import sys
+from argparse import ArgumentParser
+
+
+def parse_options():
+    parser = ArgumentParser()
+    
+    parser.add_argument("-i", "--input", dest="input", action="store",
+                        type=str, default='')
+    
+    parser.add_argument("-n", "--name", action='store_true')     
+    
+    parser.add_argument("-o", "--output", dest="output", action="store",
+                        type=str, default='') 
+    
+    options = parser.parse_args()
+
+    if options.name and not options.output:
+        print 'output filename required!'
+        sys.exit()
+    if not options.name and (not options.input or not options.output):
+        print 'input and output filenames required!'
+        sys.exit()
+
+        
+    return options
+
+def read_file(input_filename):
+    data = dict()
+    lines = map(lambda line: line.strip(),
+                open(input_filename, 'r').readlines())
+    data['current_turn'] = int(lines[0])
+    data['max_turns'] = int(lines[1])
+    data['n'], data['m'] = map(int, lines[2].split(' '))
+    data['gx'], data['gy'] = map(int, lines[3].split(' '))
+    data['soldiers'] = list()
+    index = 5
+    while index < len(lines) and lines[index]:
+        if data['current_turn'] == 0:
+            (name, energy, rx, ry) = lines[index].split(' ')
+            soldier = (name, int(energy), int(rx), int(ry))
+        else:
+            (name, energy, rx, ry, x, y) = lines[index].split(' ')
+            soldier = (name, int(energy), int(rx), int(ry), int(x), int(y))    
+        data['soldiers'].append(soldier)
+        index += 1
+    index += 1
+    data['enemies'] = list()
+    while index < len(lines):
+        (name, energy, rx, ry, x, y) = lines[index].split(' ')
+        soldier = (name, int(energy), int(rx), int(ry), int(x), int(y))        
+        data['enemies'].append(soldier)
+        index += 1    
+    return data
+
+def place_soldiers(data, output_filename):
+    n, m = data['n'], data['m']
+    with open(output_filename, 'w') as out:
+        for soldier in data['soldiers']:
+            line = '%s %d %d %d %d %d\n'
+            line = line % (soldier[0], soldier[1], soldier[2], soldier[3],
+                           random.randint(0, n-1), random.randint(0, m-1))
+            out.write(line)
+            
+def do_actions(data, output_filename):
+    n, m = data['n'], data['m']
+    with open(output_filename, 'w') as out:
+        for soldier in data['soldiers']:
+            line = '%s %d %d %d %d %d %s %d %d\n'
+            rx, ry = soldier[2], soldier[3]
+            x, y = soldier[4], soldier[5]
+            action = random.choice('AD')
+            ax = random.randint(max(0, x - rx), min(m - 1, x + rx))
+            ay = random.randint(max(0, y - ry), min(n - 1, y + ry))
+            line = line % (soldier[0], soldier[1], rx, ry, x, y,
+                           action, ax, ay)
+            out.write(line)            
+
+def main():
+    options = parse_options()
+    if options.name:
+        with open(options.output, 'w') as out:
+            out.write('dummy-%d' % random.randint(1,100000))
+        return
+    data = read_file(options.input) 
+    if data['current_turn'] == 0:
+        place_soldiers(data, options.output)
+    else:
+        do_actions(data, options.output)
+
+if __name__ == '__main__':
+    main()
