@@ -63,3 +63,14 @@ INFO: Ganador: dummy-56520
 ```
 
 Este programa genera un valor numérico al azar para conformar su nombre de ejército.
+
+
+#### Interfaz gráfica
+
+Cuando la batalla se visualiza en forma gráfica, las flechas del teclado permiten avanzar y retroceder turnos. Esto
+mismo, además, puede hacerse moviendo la barra de progreso de turnos, ubicada sobre el territorio. El botón Next, 
+por otra parte, sólo avanza turnos al ser presionado.  
+
+Al colocar el cursor del mouse sobre un soldado cualquiera, podrá conocerse su nombre y su rango de influencia.
+El rango también puede verse pasando el cursor del mouse sobre los nombres de los soldados en la tabla ubicada
+a la derecha del territorio.
