@@ -1,6 +1,3 @@
-algo2-fiuba-tp1-2q13
-====================
-
 <div align="center">
 Algoritmos y Programación II (75.04)<br>
 Facultad de Ingeniería - UBA<br>
