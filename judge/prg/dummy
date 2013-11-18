@@ -73,8 +73,8 @@ def do_actions(data, output_filename):
             rx, ry = soldier[2], soldier[3]
             x, y = soldier[4], soldier[5]
             action = random.choice('AD')
-            ax = random.randint(max(0, x - rx), min(m - 1, x + rx))
-            ay = random.randint(max(0, y - ry), min(n - 1, y + ry))
+            ax = random.randint(max(0, x - ry), min(m - 1, x + ry))
+            ay = random.randint(max(0, y - rx), min(n - 1, y + rx))
             line = line % (soldier[0], soldier[1], rx, ry, x, y,
                            action, ax, ay)
             out.write(line)            
