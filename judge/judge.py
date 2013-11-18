@@ -40,8 +40,8 @@ class Judge(object):
         px, py = position
         n = self.context.get_territory_rows()
         m = self.context.get_territory_columns()
-        return [(x,y) for x in range(max(0, px-rx), 1+min(m, px+rx))
-                      for y in range(max(0, py-ry), 1+min(n, py+ry))]    
+        return [(x,y) for x in range(max(0, px-ry), 1+min(m, px+ry))
+                      for y in range(max(0, py-rx), 1+min(n, py+rx))]    
         
     def build_soldier_from(self, index, name):
         energy = self.context.get_max_energy()
