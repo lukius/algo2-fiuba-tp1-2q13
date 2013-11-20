@@ -16,6 +16,7 @@ d3.slider = function module() {
       orientation = "horizontal",
       axis = false,
       margin = 50,
+      div,
       value,
       scale;
 
@@ -38,8 +39,7 @@ d3.slider = function module() {
       value = value || scale.domain()[0]; 
 
       // DIV container
-      var div = d3.select(this).classed("d3-slider d3-slider-" + orientation, true);
-
+      div = d3.select(this).classed("d3-slider d3-slider-" + orientation, true);
       var drag = d3.behavior.drag();
 
       // Slider handle
@@ -256,7 +256,15 @@ d3.slider = function module() {
     if (!arguments.length) return scale;
     scale = _;
     return slider;
-  }  
+  }
+  
+  slider.slide_to = function(newValue) {
+	  if(newValue > max)
+		  newValue = max;
+	  else if(newValue < min)
+		  newValue = min;
+	  div.on("click")(newValue);
+  } 
 
   d3.rebind(slider, dispatch, "on");
 

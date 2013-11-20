@@ -19,7 +19,7 @@ var war = {
             army2_name : config_data.army2_name,
             width : 700,
             height : 700,
-	        separation : 1.8,
+            separation : 1.8,
             max_radius : 10,
             min_radius : 5,
             current_iteration : 1,
@@ -55,30 +55,34 @@ var war = {
                         .max(war.config.t)
                         .step(1)
                         .on("slide", function(event, value) {
-                                        var iteration = war.config.current_iteration;
-                                        war.svg.selectAll('.grenade').remove();
-                                        war.clear_winner();
-                                        if(war.exploding)
-                                            d3.selectAll('.cell').transition().duration(750).attr('fill', war.config.cell_color);
-                                        war.config.current_iteration = value;
-                                        if(value == iteration + 1)
-                                            war.go_to_iteration(value);
-                                        else
-                                            war.render_soldiers_from(value);
+		                        var iteration = war.config.current_iteration;
+		                        war.svg.selectAll('.grenade').remove();
+		                        war.clear_winner();
+		                        if(war.exploding)
+		                            d3.selectAll('.cell').transition().duration(750).attr('fill', war.config.cell_color);
+		                        war.config.current_iteration = value;
+		                        if(value == iteration + 1)
+		                            war.go_to_iteration(value);
+		                        else
+		                            war.render_soldiers_from(value);
                         });
-        var slider_div_width = (war.config.cell_width + war.config.separation)*war.config.m - war.config.separation - war.config.button_width - 30;
+        
+        var slider_div_width = (war.config.cell_width + war.config.separation)*war.config.m -
+        						war.config.separation - war.config.button_width - 30;
         var slider_div = d3.select('#slide')
-                            .attr('style', 'width:' + slider_div_width.toString());
-        slider_div.call(slider);
-        d3.select("#button").on("click", function() {
-                                            if(war.can_slide_forward())
-                                                war.move_slider(war.config.current_iteration + 1);
-                                         });
+                            .attr('style', 'width:' + slider_div_width.toString())
+                            .call(slider);
+        war.slider = slider;
+        d3.select("#button")
+        	.on("click", function() {
+        		if(war.can_slide_forward())
+        			war.move_slider(war.config.current_iteration + 1);
+        	});
     },
 
     move_slider : function(value) {
     	war.clear_cells();
-        d3.select('.d3-slider').on('click')(value);
+        war.slider.slide_to(value);
     },
 
     can_slide_forward : function() {
