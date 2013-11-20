@@ -89,7 +89,7 @@ class GraphicsBasedGameManager(GameManager):
     
     ADDRESS = '127.0.0.1'
     PORT = 8080
-    BROWSERS = ['google-chrome', 'chromium-browser', 'firefox']
+    BROWSERS = ['google-chrome', 'chromium-browser']
     OUTPUT_DIRECTORY = 'judge/ui'
     
     def __init__(self, options):

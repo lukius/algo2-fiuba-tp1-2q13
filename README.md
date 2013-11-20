@@ -17,7 +17,7 @@ Disponible en este mismo repositorio
 #### Requisitos
 
 El juez está implementado en Python 2.7, y utiliza Javascript para la parte visual. Los navegadores
-principalmente recomendados son Chrome, Chromium y/o Firefox (en ese orden). En caso de no existir ninguno,
+principalmente recomendados son Chrome o Chromium (en ese orden). En caso de no existir ninguno,
 sólo se podrá correr las simulaciones en texto plano.  
 
 Además, tener en cuenta que fue íntegramente desarrollado y testeado en plataformas Linux.
