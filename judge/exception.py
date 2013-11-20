@@ -16,9 +16,8 @@ class ValidationException(GameException):
         self.army_name = rule.get_object().get_soldier().get_army_name()
     
     def __str__(self):
-        army_name = self.rule.get_object().get_soldier().get_army_name()
         string = '%s violó las reglas de validación!\n%s'
-        return string % (army_name, str(self.rule))
+        return string % (self.army_name, str(self.rule))
     
 
 class ParsingException(GameException):

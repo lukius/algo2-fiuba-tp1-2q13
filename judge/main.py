@@ -55,3 +55,7 @@ class Main(object):
             logging.log(logging.ERROR, str(e))
         else:
             game_manager.end()
+            
+            
+if __name__ == '__main__':
+    Main().run()            

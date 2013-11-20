@@ -1,10 +1,10 @@
-#!/usr/bin/python
+#!/bin/bash
 
-import sys
+python=$(which python2.7)
+judge=judge/main.py
 
-from judge.main import Main
-
-
-if __name__ == '__main__':
-    Main().run()
-    
+if [ -z "$python" ]; then
+    echo "ERROR: python2.7 no parece estar instalado!"
+else
+    $($python $judge "$@")
+fi
