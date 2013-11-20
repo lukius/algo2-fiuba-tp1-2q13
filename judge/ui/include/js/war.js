@@ -77,6 +77,7 @@ var war = {
     },
 
     move_slider : function(value) {
+    	war.clear_cells();
         d3.select('.d3-slider').on('click')(value);
     },
 
@@ -108,6 +109,10 @@ var war = {
                 else if(war.can_slide_backwards() && is_left_arrow(key_code))
                     war.move_slider(war.config.current_iteration - 1);
             });
+    },
+    
+    clear_cells : function() {
+        d3.selectAll('.cell').attr('fill', war.config.cell_color);    	
     },
 
     read_json_and_execute : function(json_filename, callback) {
