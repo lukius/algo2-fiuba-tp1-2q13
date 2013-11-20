@@ -36,8 +36,9 @@ def read_file(input_filename):
     data['max_turns'] = int(lines[1])
     data['n'], data['m'] = map(int, lines[2].split(' '))
     data['gx'], data['gy'] = map(int, lines[3].split(' '))
+    data['e'] = int(lines[4])
     data['soldiers'] = list()
-    index = 5
+    index = 6
     while index < len(lines) and lines[index]:
         if data['current_turn'] == 0:
             (name, energy, rx, ry) = lines[index].split(' ')

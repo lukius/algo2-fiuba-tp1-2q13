@@ -103,10 +103,12 @@ class FileWriter(object):
         n = self.context.get_territory_rows()
         m = self.context.get_territory_columns()
         attack_range = self.context.get_attack_range()
+        e = self.context.get_max_energy()
         file.write('%d\n' % current_turn)
         file.write('%d\n' % max_turns)
         file.write('%d %d\n' % (n, m))
         file.write('%d %d\n' % (attack_range[0], attack_range[1]))
+        file.write('%d\n' % e)
         file.write('\n')
         
     def write_soldiers(self, file, soldiers):
