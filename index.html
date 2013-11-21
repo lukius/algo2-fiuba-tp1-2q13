@@ -1,0 +1,62 @@
+<html>
+<head>
+<style>
+p {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  color: white;
+}
+</style>
+<meta charset="utf-8"/>
+<script type="text/javascript" src="js/d3.js"></script>
+<script type="text/javascript" src="js/jquery-2.0.3.js"></script> 
+<script type="text/javascript" src="js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="js/d3.slider.js"></script>
+<script type="text/javascript" src="js/war.js"></script>
+<link href="css/tipsy.css" rel="stylesheet" type="text/css"/>
+<link href="css/d3.slider.css" rel="stylesheet" type="text/css"/>
+</head>
+<body onload="war.run()" bgcolor="#2f302f">
+<table style="margin:10px">
+<tr>
+<td>
+<table style="float:left;padding-bottom:200px">
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td>
+                        <button id='button' >Next!</button>
+                    </td>
+                    <td style="padding-left:20px">
+                        <div id="slide"></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+     </tr>
+     <tr>
+        <td>
+            <div id="ground"></div>
+        </td>
+    </tr>
+</table>
+</td>
+<td style="float:top">
+<table>
+    <tr>
+        <td align="center" style="padding-left:100px">
+            <div id="winner"style="width:200px;height:10px;padding-bottom:10px"></div>
+        </td>
+    </tr>
+    <tr>
+        <td><div id="army1" style="width:200px;height:800px"></div>
+        </td>
+        <td style="padding-left:0px"><div id="army2" style="width:200px;height:800px"></div>
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
