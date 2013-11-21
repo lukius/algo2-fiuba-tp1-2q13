@@ -70,4 +70,6 @@ por otra parte, sólo avanza turnos al ser presionado.
 
 Al colocar el cursor del mouse sobre un soldado cualquiera, podrá conocerse su nombre y su rango de influencia.
 El rango también puede verse pasando el cursor del mouse sobre los nombres de los soldados en la tabla ubicada
-a la derecha del territorio.
+a la derecha del territorio.  
+
+Un ejemplo de cómo se visualiza la batalla puede encontrarse [acá](http://lukius.github.io/algo2-fiuba-tp1-2q13/)
