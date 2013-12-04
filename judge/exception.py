@@ -26,8 +26,8 @@ class ParsingException(GameException):
         self.text = text
         
     def __str__(self):
-        program_name = self.program.get_name()
-        return '%s: formato de salida incorrecto (%s)' % (program_name,
+        army_name = self.get_army_name()
+        return '%s: formato de salida incorrecto (%s)' % (army_name,
                                                           self.text.strip())
     
     

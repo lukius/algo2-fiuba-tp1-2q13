@@ -10,6 +10,7 @@ from manager import GameManager
 
 class Main(object):
     
+    PROGRAM_NAME = 'j'
     DESCRIPTION = 'Juez de batalla -- Algoritmos II'
     HELP_REPLAY = 'Intentar repetir la batalla (si existiese) en lugar de\
                    simularla nuevamente'
@@ -23,7 +24,8 @@ class Main(object):
                             level=logging_level)
     
     def parse_cmdline(self):
-        parser = ArgumentParser(description=self.DESCRIPTION,
+        parser = ArgumentParser(prog=self.PROGRAM_NAME,
+                                description=self.DESCRIPTION,
                                 add_help=False)
         
         positionals = parser.add_argument_group('Argumentos posicionales')

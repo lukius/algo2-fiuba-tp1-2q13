@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*- 
+
 import os
 import re
 import random
@@ -37,11 +39,14 @@ class FileReader(object):
         self.placement_re = re.compile('(.*)' + '\s+(\d+)'*5)
         self.action_re = re.compile('(.*)' + '\s+(\d+)'*5 + '\s+([AD])' +\
                                     '\s+(\d+)'*2)
+        
+    def raise_parsing_exception_with(self, text):
+        raise ParsingException(text)
     
     def match_regexp(self, regexp, text):
         match = regexp.match(text)
         if match is None:
-            raise ParsingException(text)
+            self.raise_parsing_exception_with(text)
         return match.groups()
     
     def read_soldier(self, line):
@@ -78,6 +83,8 @@ class FileReader(object):
     def read(self, filename):
         with open(filename, 'r') as file:
             lines = file.readlines()
+            if not lines:
+                self.raise_parsing_exception_with('lista de soldados vacía')
             if self.context.get_current_turn() == 0:
                 data = self.read_army_placement(lines)
             else:
