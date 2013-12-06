@@ -120,7 +120,8 @@ var war = {
     },
 
     read_json_and_execute : function(json_filename, callback) {
-	    d3.json(json_filename, callback);    
+        var encoded_file_url = encodeURIComponent(json_filename);
+        d3.json(encoded_file_url, callback);    
     },
 
     render_soldiers_from : function(iteration_number) {
