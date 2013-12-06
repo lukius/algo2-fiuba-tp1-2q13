@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from exception import ProgramCrash
@@ -12,11 +13,13 @@ class Program(object):
         return self.binary
         
     def execute(self, arguments):
-        arguments_string = arguments.serialize()
-        command_list = [self.binary] + arguments_string.split(' ')
-        exit_code = subprocess.Popen(command_list).wait()
-        if exit_code < 0:
-            raise ProgramCrash(self.binary, exit_code)
+        with open(os.devnull, 'w') as devnull:
+            arguments_string = arguments.serialize()
+            command_list = [self.binary] + arguments_string.split(' ')
+            exit_code = subprocess.Popen(command_list, stdout=devnull,
+                                         stderr=devnull).wait()
+            if exit_code < 0:
+                raise ProgramCrash(self.binary, exit_code)
     
 
 class ProgramArguments(object):

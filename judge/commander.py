@@ -16,7 +16,7 @@ class Commander(object):
     def find_army_name(self):
         try:
             name = self.do_find_army_name()
-        except IOError:
+        except Exception:
             # If program fails to implement -n properly, just choose
             # a random name.
             name = 'army-%d'% random.randint(1,10000000)
